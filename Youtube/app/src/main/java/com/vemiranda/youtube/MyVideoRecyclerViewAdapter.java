@@ -11,8 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.vemiranda.youtube.VideoFragment.OnListFragmentInteractionListener;
-import com.vemiranda.youtube.dummy.DummyContent.DummyItem;
+
 
 import java.util.List;
 
@@ -30,10 +29,10 @@ public class MyVideoRecyclerViewAdapter extends RecyclerView.Adapter<MyVideoRecy
     }
 
     @Override
-    public MyVideoRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_video, parent, false);
-        return new MyVideoRecyclerViewAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -57,7 +56,7 @@ public class MyVideoRecyclerViewAdapter extends RecyclerView.Adapter<MyVideoRecy
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mValues.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +75,7 @@ public class MyVideoRecyclerViewAdapter extends RecyclerView.Adapter<MyVideoRecy
             ivFoto = view.findViewById(R.id.imageViewFoto);
             tvTitulo = view.findViewById(R.id.textViewTitulo);
             tvUsuario = view.findViewById(R.id.textViewUsuario);
-            ivFotoUsuario = view.findViewById(R.id.textViewUsuario);
+            ivFotoUsuario = view.findViewById(R.id.imageViewUsuarioFoto);
             tvVisualizaciones = view.findViewById(R.id.textViewVisualizaciones);
             tvDuracion = view.findViewById(R.id.textViewDuracion);
         }
