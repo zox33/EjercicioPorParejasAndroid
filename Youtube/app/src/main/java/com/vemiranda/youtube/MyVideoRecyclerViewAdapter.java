@@ -43,6 +43,8 @@ public class MyVideoRecyclerViewAdapter extends RecyclerView.Adapter<MyVideoRecy
         holder.tvVisualizaciones.setText(holder.mItem.getVisualizaciones());
         holder.tvDuracion.setText(holder.mItem.getDuracion());
 
+        holder.tvDuracion.bringToFront();
+
         Glide.with(ctx)
                 .load(holder.mItem.getUrlPhoto())
                 .centerCrop()
@@ -50,7 +52,7 @@ public class MyVideoRecyclerViewAdapter extends RecyclerView.Adapter<MyVideoRecy
 
             Glide.with(ctx)
             .load(holder.mItem.getPhotoUsuario())
-            .centerCrop()
+            .circleCrop()
                 .into(holder.ivFotoUsuario);
 }
 
