@@ -9,6 +9,7 @@ public class Video {
     private String urlPhoto;
     private String titulo;
     private String usuario;
+    private String photoUsuario;
     private String visualizaciones;
     private String duracion;
 }

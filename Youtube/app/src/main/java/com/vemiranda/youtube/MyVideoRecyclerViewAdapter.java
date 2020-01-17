@@ -1,78 +1,84 @@
 package com.vemiranda.youtube;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.vemiranda.youtube.VideoFragment.OnListFragmentInteractionListener;
 import com.vemiranda.youtube.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyVideoRecyclerViewAdapter extends RecyclerView.Adapter<MyVideoRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<Video> mValues;
+    private Context ctx;
+    private int layout;
 
-    public MyVideoRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+
+    public MyVideoRecyclerViewAdapter(Context ctx, int layout, List<Video> objects) {
+        this.ctx = ctx;
+        this.layout = layout;
+        mValues = objects;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyVideoRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_video, parent, false);
-        return new ViewHolder(view);
+        return new MyVideoRecyclerViewAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final MyVideoRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.tvTitulo.setText(holder.mItem.getTitulo());
+        holder.tvUsuario.setText(holder.mItem.getUsuario());
+        holder.tvVisualizaciones.setText(holder.mItem.getVisualizaciones());
+        holder.tvDuracion.setText(holder.mItem.getDuracion());
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
-    }
+        Glide.with(ctx)
+                .load(holder.mItem.getUrlPhoto())
+                .centerCrop()
+                .into(holder.ivFoto);
+
+            Glide.with(ctx)
+            .load(holder.mItem.getPhotoUsuario())
+            .centerCrop()
+                .into(holder.ivFotoUsuario);
+}
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final ImageView ivFoto;
+        public final ImageView ivFotoUsuario;
+        public final TextView tvTitulo;
+        public final TextView tvUsuario;
+        public final TextView tvVisualizaciones;
+        public final TextView tvDuracion;
+        public Video mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            ivFoto = view.findViewById(R.id.imageViewFoto);
+            tvTitulo = view.findViewById(R.id.textViewTitulo);
+            tvUsuario = view.findViewById(R.id.textViewUsuario);
+            ivFotoUsuario = view.findViewById(R.id.textViewUsuario);
+            tvVisualizaciones = view.findViewById(R.id.textViewVisualizaciones);
+            tvDuracion = view.findViewById(R.id.textViewDuracion);
         }
     }
 }
