@@ -2,40 +2,37 @@ package com.joseterrero.amazon;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.joseterrero.amazon.ProductoFragment.OnListFragmentInteractionListener;
-import com.joseterrero.amazon.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProductoRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<Producto> mValues;
+    private Context ctx;
+    private int layout;
 
-    public MyProductoRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+    public MyProductoRecyclerViewAdapter(Context ctx, int layout, List<Producto> objects) {
+        this.ctx = ctx;
+        this.layout = layout;
+        mValues = objects;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_producto, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, ivFoto, ivCheckPrime, tvTituloProductoSolicitado, tvTitulo, tvTienda, tvPrecio, tvPrime, tvFechaLlegada, tvEnvioGratis, tvDisponibilidad, tvComentario, tvVariantes, valoracion);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final MyProductoRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
@@ -59,15 +56,27 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final ImageView ivFoto, ivCheckPrime;
+        public final TextView tvTituloProductoSolicitado, tvTitulo, tvTienda, tvPrecio, tvPrime, tvFechaLlegada, tvEnvioGratis, tvDisponibilidad, tvComentario, tvVariantes;
+        public final RatingBar valoracion;
+        public Producto mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            ivFoto = view.findViewById(R.id.);
+            ivCheckPrime = view.findViewById(R.id.);
+            tvTituloProductoSolicitado = view.findViewById(R.id.);
+            tvTitulo = view.findViewById(R.id.);
+            tvTienda = view.findViewById(R.id.);
+            tvPrecio = view.findViewById(R.id.);
+            tvPrime = view.findViewById(R.id.);
+            tvFechaLlegada = view.findViewById(R.id.);
+            tvEnvioGratis = view.findViewById(R.id.);
+            tvDisponibilidad = view.findViewById(R.id.);
+            tvComentario = view.findViewById(R.id.);
+            tvVariantes = view.findViewById(R.id.);
+            valoracion = view.findViewById(R.id.);
         }
 
         @Override
