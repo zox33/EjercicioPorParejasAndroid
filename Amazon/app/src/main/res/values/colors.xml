@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorBlanco">#FFFFFF</color>
+    <color name="colorFondoEtiquetAmazonChoice">#222633</color>
+    <color name="colorNegro">#000000</color>
+    <color name="colorPrecio">#A83939</color>
+    <color name="colorPrime">#45A0EF</color>
 </resources>
