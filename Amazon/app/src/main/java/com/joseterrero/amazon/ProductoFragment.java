@@ -58,7 +58,7 @@ public class ProductoFragment extends Fragment {
             productosList.add(new Producto("Amazon's Choice", "Amazon Echo (2º generación) - Altavoz inteligente con Alexa," +
                     "tela de color antracita", "de Amazon", "EUR 99,99", "prime", "Recibelo el jueves, 29 noviembre",
                     "Envio GRATIS", "disponible", 4, 180, "Ver otras variantes",
-                    "https://www.electrocosto.com/524404-product_category/amazon-alexa-echo-plus-generacion-2-negro.jpg"));
+                    "http://www.uegmobile.com/wp-content/uploads/2019/01/Home-Amazon-Hero-1.png"));
             productosList.add(new Producto("Amazon's Choice", "Amazon Echo (2º generación) - Altavoz inteligente con Alexa," +
                     "tela de color antracita", "de Amazon", "EUR 99,99", "prime", "Recibelo el jueves, 29 noviembre",
                     "Envio GRATIS", "disponible", 4, 180, "Ver otras variantes",

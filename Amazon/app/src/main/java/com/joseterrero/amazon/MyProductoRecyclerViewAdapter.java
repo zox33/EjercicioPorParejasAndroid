@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProductoRecyclerViewAdapter.ViewHolder> {
@@ -28,25 +30,28 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_producto, parent, false);
-        return new ViewHolder(view, ivFoto, ivCheckPrime, tvTituloProductoSolicitado, tvTitulo, tvTienda, tvPrecio, tvPrime, tvFechaLlegada, tvEnvioGratis, tvDisponibilidad, tvComentario, tvVariantes, valoracion);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final MyProductoRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.tvTituloProductoSolicitado.setText(holder.mItem.getTituloProductoSolicitado());
+        holder.tvTitulo.setText(holder.mItem.getTitulo());
+        holder.tvTienda.setText(holder.mItem.getNombreTienda());
+        holder.tvPrecio.setText(holder.mItem.getPrecio());
+        holder.tvPrime.setText(holder.mItem.getNombreServicioPremium());
+        holder.tvFechaLlegada.setText(holder.mItem.getFechaRecibo());
+        holder.tvEnvioGratis.setText(holder.mItem.getServicioEnvio());
+        holder.tvDisponibilidad.setText(holder.mItem.getDisponibilidad());
+        holder.tvComentario.setText("("+holder.mItem.getCantidadComentarios()+")");
+        holder.tvVariantes.setText(holder.mItem.getVariantesProductos());
+        holder.valoracion.setRating(holder.mItem.getValoracion());
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
+        Glide.with(ctx)
+                .load(holder.mItem.getUrlPhoto())
+                .centerCrop()
+                .into(holder.ivFoto);
     }
 
     @Override
@@ -64,24 +69,19 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            ivFoto = view.findViewById(R.id.);
-            ivCheckPrime = view.findViewById(R.id.);
-            tvTituloProductoSolicitado = view.findViewById(R.id.);
-            tvTitulo = view.findViewById(R.id.);
-            tvTienda = view.findViewById(R.id.);
-            tvPrecio = view.findViewById(R.id.);
-            tvPrime = view.findViewById(R.id.);
-            tvFechaLlegada = view.findViewById(R.id.);
-            tvEnvioGratis = view.findViewById(R.id.);
-            tvDisponibilidad = view.findViewById(R.id.);
-            tvComentario = view.findViewById(R.id.);
-            tvVariantes = view.findViewById(R.id.);
-            valoracion = view.findViewById(R.id.);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            ivFoto = view.findViewById(R.id.imageViewFoto);
+            ivCheckPrime = view.findViewById(R.id.imageViewCheckPrime);
+            tvTituloProductoSolicitado = view.findViewById(R.id.textViewTituloProductoSolicitado);
+            tvTitulo = view.findViewById(R.id.textViewTitulo);
+            tvTienda = view.findViewById(R.id.textViewTienda);
+            tvPrecio = view.findViewById(R.id.textViewPrecio);
+            tvPrime = view.findViewById(R.id.textViewPrime);
+            tvFechaLlegada = view.findViewById(R.id.textViewFechaLlegada);
+            tvEnvioGratis = view.findViewById(R.id.textViewEnvioGratis);
+            tvDisponibilidad = view.findViewById(R.id.textViewDisponibilidadEnvioGratis);
+            tvComentario = view.findViewById(R.id.textViewComentarios);
+            tvVariantes = view.findViewById(R.id.textViewVariantes);
+            valoracion = view.findViewById(R.id.ratingBar);
         }
     }
 }
