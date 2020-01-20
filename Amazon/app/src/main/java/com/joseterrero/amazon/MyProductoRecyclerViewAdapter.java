@@ -50,7 +50,6 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
 
         Glide.with(ctx)
                 .load(holder.mItem.getUrlPhoto())
-                .centerCrop()
                 .into(holder.ivFoto);
     }
 
@@ -81,7 +80,7 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
             tvDisponibilidad = view.findViewById(R.id.textViewDisponibilidadEnvioGratis);
             tvComentario = view.findViewById(R.id.textViewComentarios);
             tvVariantes = view.findViewById(R.id.textViewVariantes);
-            valoracion = view.findViewById(R.id.ratingBar);
+            valoracion = view.findViewById(R.id.ratingBarValoracion);
         }
     }
 }
